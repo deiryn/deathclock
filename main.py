@@ -48,34 +48,17 @@ async def checkTime():
             delta = now-lastTime
             if delta.days >= 1:
                 embed = discord.Embed(title="GENTLEMEN, SYNCHRONIZE YOUR DEATH WATCHES:")
-                embed.add_field(name=f"{(lambda: '• ГЕОГРАФИИ:', lambda: '~~• ГЕОГРАФИИ:~~')[geoDaysLeft.days <= 0]()}", value=f"{(lambda:'**{geoDaysLeft.days}** дней осталось', lambda:'~~**0** дней осталось~~')[geoDaysLeft <= 0]()}", inline=False)
-                embed.add_field(name=f"{(lambda: '• РУССКИЙ:', lambda: '~~• РУССКИЙ:~~')[rusDaysLeft.days <= 0]()}", value=f"{(lambda:'**{rusDaysLeft.days}** дней осталось', lambda:'~~**0** дней осталось~~')[rusDaysLeft <= 0]()}", inline=False)
-                embed.add_field(name=f"{(lambda: '• МАТЕМАТИКА:', lambda: '~~• МАТЕМАТИКА:~~')[matDaysLeft.days <= 0]()}", value=f"{(lambda:'**{matDaysLeft.days}** дней осталось', lambda:'~~**0** дней осталось~~')[matDaysLeft <= 0]()}", inline=False)
-                embed.add_field(name=f"{(lambda: '• АНГЛИЙСКИЙ:', lambda: '~~• АНГЛИЙСКИЙ:~~')[engDaysLeft.days <= 0]()}", value=f"{(lambda:'**{engDaysLeft.days}** дней осталось', lambda:'~~**0** дней осталось~~')[engDaysLeft <= 0]()}", inline=False)
-                embed.add_field(name=f"{(lambda: '• РУССКИЙ (Беларусь):', lambda: '~~• РУССКИЙ (Беларусь):~~')[brusDaysLeft.days <= 0]()}", value=f"{(lambda:'**{brusDaysLeft.days}** дней осталось', lambda:'~~**0** дней осталось~~')[brusDaysLeft <= 0]()}", inline=False)
-                embed.add_field(name=f"{(lambda: '• ИНФОРМАТИКА:', lambda: '~~• ИНФОРМАТИКА:~~')[infDaysLeft.days <= 0]()}", value=f"{(lambda:'**{infDaysLeft.days}** дней осталось', lambda:'~~**0** дней осталось~~')[infDaysLeft <= 0]()}", inline=False)
-                embed.add_field(name=f"{(lambda: '• МАТЕМАТИКА (Беларусь):', lambda: '~~• МАТЕМАТИКА (Беларусь):~~')[bmatDaysLeft.days <= 0]()}", value=f"{(lambda:'**{bmatDaysLeft.days}** дней осталось', lambda:'~~**0** дней осталось~~')[bmatDaysLeft <= 0]()}", inline=False)
-                embed.add_field(name=f"{(lambda: '• АНГЛИЙСКИЙ (ГОВОРЕНИЕ):', lambda: '~~• АНГЛИЙСКИЙ (ГОВОРЕНИЕ):~~')[engtDaysLeft.days <= 0]()}", value=f"{(lambda:'**{engtDaysLeft.days}** дней осталось', lambda:'~~**0** дней осталось~~')[engtDaysLeft <= 0]()}", inline=False)
-                embed.add_field(name=f"{(lambda: '• ГЕОГРАФИЯ (Беларусь):', lambda: '~~• ГЕОГРАФИЯ (Беларусь):~~')[bgeoDaysLeft.days <= 0]()}", value=f"**{(lambda:'**{bgeoDaysLeft.days}** дней осталось', lambda:'~~**0** дней осталось~~')[bgeoDaysLeft <= 0]()}", inline=False)
-                if geoDaysLeft.days == 0:
-                    await channel.send("@everyone https://www.youtube.com/watch?v=pjGZnRwtvww", embed=embed)
-                elif rusDaysLeft.days == 0:
-                    await channel.send("@everyone https://www.youtube.com/watch?v=TunxTKRvIk8", embed=embed)
-                elif matDaysLeft.days == 0:
-                    await channel.send("@everyone https://tenor.com/view/crying-tears-terrified-scared-gif-25745077", embed=embed)
-                elif engDaysLeft.days == 0:
-                    await channel.send("@everyone https://www.youtube.com/watch?v=yF3JWJksP9I", embed=embed)
-                elif brusDaysLeft.days == 0:
-                    await channel.send("@everyone https://www.youtube.com/watch?v=_GQ_sKMZ-mE", embed=embed)
-                elif infDaysLeft.days == 0:
-                    await channel.send("@everyone https://www.youtube.com/watch?v=PdA7JUcVdL8", embed=embed)
-                elif bmatDaysLeft.days == 0:
-                    await channel.send("@everyone https://www.youtube.com/watch?v=gqKDC5_EUIk", embed=embed)
-                elif engtDaysLeft.days == 0:
-                    await channel.send("@everyone https://www.youtube.com/watch?v=GSyCkS36R0E", embed=embed)
-                elif bgeoDaysLeft.days == 0:
-                    await channel.send("@everyone https://www.youtube.com/watch?v=yfPfH26IdKk", embed=embed)
-                
+                embed.add_field(name="• ГЕОГРАФИИ:", value=f"**{geoDaysLeft.days}** дней осталось", inline=False)
+                embed.add_field(name="• РУССКИЙ:", value=f"**{rusDaysLeft.days}** дней осталось", inline=False)
+                embed.add_field(name="• МАТЕМАТИКА:", value=f"**{matDaysLeft.days}** дней осталось", inline=False)
+                embed.add_field(name="• АНГЛИЙСКИЙ:", value=f"**{engDaysLeft.days}** дней осталось", inline=False)
+                embed.add_field(name="• РУССКИЙ (Беларусь):", value=f"**{brusDaysLeft.days}** дней осталось", inline=False)
+                embed.add_field(name="• ИНФОРМАТИКА:", value=f"**{infDaysLeft.days}** дней осталось", inline=False)
+                embed.add_field(name="• МАТЕМАТИКА (Беларусь):", value=f"**{bmatDaysLeft.days}** дней осталось", inline=False)
+                embed.add_field(name="• АНГЛИЙСКИЙ (ГОВОРЕНИЕ):", value=f"**{engtDaysLeft.days}** дней осталось", inline=False)
+                embed.add_field(name="• ГЕОГРАФИЯ (Беларусь):", value=f"**{bgeoDaysLeft.days}** дней осталось", inline=False)
+                await channel.send("@everyone", embed=embed)
+
                 date.seek(0)
                 date.truncate()
                 now = str(now)
