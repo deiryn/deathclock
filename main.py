@@ -9,6 +9,49 @@ if platform == "win32":
 
 bot = commands.Bot(command_prefix="$", help_command=None, intents=discord.Intents.all())
 
+def dayDeclension(number):
+    listOfNumbers = []
+    tempString = str(number)
+    for symbol in tempString:
+        listOfNumbers.append(symbol)
+    listOfNumbers.reverse()
+    if len(listOfNumbers) == 2:
+        match listOfNumbers[0]:
+            case '1':
+                if listOfNumbers[1] == '1':
+                    return "дней"
+                else:
+                    return "день"
+            case '2':
+                if listOfNumbers[1] != '1':
+                    return "дня"
+                else:
+                    return "дней"
+            case '3':
+                if listOfNumbers[1] != '1':
+                    return "дня"
+                else:
+                    return "дней"
+            case '4':
+                if listOfNumbers[1] != '1':
+                    return "дня"
+                else:
+                    return "дней"
+            case _:
+                return "дней"
+            
+    else:
+        match listOfNumbers[0]:
+            case '1':
+                return "день"
+            case '2':
+                return "дня"
+            case '3':
+                return "дня"
+            case '4':
+                return "дня"
+            case _:
+                return "дней"
 
 @bot.event
 async def on_ready():
@@ -34,7 +77,12 @@ async def checkTime():
     bmatDaysLeft = datetime.date(2023, 6, 20) - datetime.date.today()
     engtDaysLeft = datetime.date(2023, 6, 27) - datetime.date.today()
     bgeoDaysLeft = datetime.date(2023, 7, 11) - datetime.date.today()
-    #datesend
+    #dates_end
+
+    # склонения
+    
+    #
+
     channel = bot.get_channel(1109578326005256333)
     with open("date.txt", 'r+') as date:
         for line in date.readlines():
@@ -47,15 +95,15 @@ async def checkTime():
             delta = now-lastTime
             if delta.days >= 1:
                 embed = discord.Embed(title="GENTLEMEN, SYNCHRONIZE YOUR DEATH WATCHES:")
-                embed.add_field(name=f"{(lambda: '• ГЕОГРАФИИ:', lambda: '~~• ГЕОГРАФИИ:~~')[geoDaysLeft.days <= 0]()}", value=f"{(lambda:'**{geoDaysLeft.days}** дней осталось', lambda:'~~**0** дней осталось~~')[geoDaysLeft <= 0]()}", inline=False)
-                embed.add_field(name=f"{(lambda: '• РУССКИЙ:', lambda: '~~• РУССКИЙ:~~')[rusDaysLeft.days <= 0]()}", value=f"{(lambda:'**{rusDaysLeft.days}** дней осталось', lambda:'~~**0** дней осталось~~')[rusDaysLeft <= 0]()}", inline=False)
-                embed.add_field(name=f"{(lambda: '• МАТЕМАТИКА:', lambda: '~~• МАТЕМАТИКА:~~')[matDaysLeft.days <= 0]()}", value=f"{(lambda:'**{matDaysLeft.days}** дней осталось', lambda:'~~**0** дней осталось~~')[matDaysLeft <= 0]()}", inline=False)
-                embed.add_field(name=f"{(lambda: '• АНГЛИЙСКИЙ:', lambda: '~~• АНГЛИЙСКИЙ:~~')[engDaysLeft.days <= 0]()}", value=f"{(lambda:'**{engDaysLeft.days}** дней осталось', lambda:'~~**0** дней осталось~~')[engDaysLeft <= 0]()}", inline=False)
-                embed.add_field(name=f"{(lambda: '• РУССКИЙ (Беларусь):', lambda: '~~• РУССКИЙ (Беларусь):~~')[brusDaysLeft.days <= 0]()}", value=f"{(lambda:'**{brusDaysLeft.days}** дней осталось', lambda:'~~**0** дней осталось~~')[brusDaysLeft <= 0]()}", inline=False)
-                embed.add_field(name=f"{(lambda: '• ИНФОРМАТИКА:', lambda: '~~• ИНФОРМАТИКА:~~')[infDaysLeft.days <= 0]()}", value=f"{(lambda:'**{infDaysLeft.days}** дней осталось', lambda:'~~**0** дней осталось~~')[infDaysLeft <= 0]()}", inline=False)
-                embed.add_field(name=f"{(lambda: '• МАТЕМАТИКА (Беларусь):', lambda: '~~• МАТЕМАТИКА (Беларусь):~~')[bmatDaysLeft.days <= 0]()}", value=f"{(lambda:'**{bmatDaysLeft.days}** дней осталось', lambda:'~~**0** дней осталось~~')[bmatDaysLeft <= 0]()}", inline=False)
-                embed.add_field(name=f"{(lambda: '• АНГЛИЙСКИЙ (ГОВОРЕНИЕ):', lambda: '~~• АНГЛИЙСКИЙ (ГОВОРЕНИЕ):~~')[engtDaysLeft.days <= 0]()}", value=f"{(lambda:'**{engtDaysLeft.days}** дней осталось', lambda:'~~**0** дней осталось~~')[engtDaysLeft <= 0]()}", inline=False)
-                embed.add_field(name=f"{(lambda: '• ГЕОГРАФИЯ (Беларусь):', lambda: '~~• ГЕОГРАФИЯ (Беларусь):~~')[bgeoDaysLeft.days <= 0]()}", value=f"**{(lambda:'**{bgeoDaysLeft.days}** дней осталось', lambda:'~~**0** дней осталось~~')[bgeoDaysLeft <= 0]()}", inline=False)
+                embed.add_field(name=f"{(lambda: '• ГЕОГРАФИИ:', lambda: '~~• ГЕОГРАФИИ:~~')[geoDaysLeft.days <= 0]()}", value=f"{(lambda:'**{geoDaysLeft.days}** {dayDeclension(geoDaysLeft.days)} осталось', lambda:'~~**0** дней осталось~~')[geoDaysLeft.days <= 0]()}", inline=False)
+                embed.add_field(name=f"{(lambda: '• РУССКИЙ:', lambda: '~~• РУССКИЙ:~~')[rusDaysLeft.days <= 0]()}", value=f"{(lambda:'**{rusDaysLeft.days}** {dayDeclension(rusDaysLeft.days)} осталось', lambda:'~~**0** дней осталось~~')[rusDaysLeft.days <= 0]()}", inline=False)
+                embed.add_field(name=f"{(lambda: '• МАТЕМАТИКА:', lambda: '~~• МАТЕМАТИКА:~~')[matDaysLeft.days <= 0]()}", value=f"{(lambda:'**{matDaysLeft.days}** {dayDeclension(matDaysLeft.days} осталось', lambda:'~~**0** дней осталось~~')[matDaysLeft.days <= 0]()}", inline=False)
+                embed.add_field(name=f"{(lambda: '• АНГЛИЙСКИЙ:', lambda: '~~• АНГЛИЙСКИЙ:~~')[engDaysLeft.days <= 0]()}", value=f"{(lambda:'**{engDaysLeft.days}** {dayDeclension(engDaysLeft.days)} осталось', lambda:'~~**0** дней осталось~~')[engDaysLeft.days <= 0]()}", inline=False)
+                embed.add_field(name=f"{(lambda: '• РУССКИЙ (Беларусь):', lambda: '~~• РУССКИЙ (Беларусь):~~')[brusDaysLeft.days <= 0]()}", value=f"{(lambda:'**{brusDaysLeft.days}** {dayDeclension(brusDaysLeft.days})} осталось', lambda:'~~**0** дней осталось~~')[brusDaysLeft.days <= 0]()}", inline=False)
+                embed.add_field(name=f"{(lambda: '• ИНФОРМАТИКА:', lambda: '~~• ИНФОРМАТИКА:~~')[infDaysLeft.days <= 0]()}", value=f"{(lambda:'**{infDaysLeft.days}** {dayDeclension(infDaysLeft.days)} осталось', lambda:'~~**0** дней осталось~~')[infDaysLeft.days <= 0]()}", inline=False)
+                embed.add_field(name=f"{(lambda: '• МАТЕМАТИКА (Беларусь):', lambda: '~~• МАТЕМАТИКА (Беларусь):~~')[bmatDaysLeft.days <= 0]()}", value=f"{(lambda:'**{bmatDaysLeft.days}** {dayDeclension(bmatDaysLeft.days)} осталось', lambda:'~~**0** дней осталось~~')[bmatDaysLeft.days <= 0]()}", inline=False)
+                embed.add_field(name=f"{(lambda: '• АНГЛИЙСКИЙ (ГОВОРЕНИЕ):', lambda: '~~• АНГЛИЙСКИЙ (ГОВОРЕНИЕ):~~')[engtDaysLeft.days <= 0]()}", value=f"{(lambda:'**{engtDaysLeft.days}** {dayDeclension(engtDaysLeft.days)} осталось', lambda:'~~**0** дней осталось~~')[engtDaysLeft.days <= 0]()}", inline=False)
+                embed.add_field(name=f"{(lambda: '• ГЕОГРАФИЯ (Беларусь):', lambda: '~~• ГЕОГРАФИЯ (Беларусь):~~')[bgeoDaysLeft.days <= 0]()}", value=f"**{(lambda:'**{bgeoDaysLeft.days}** {dayDeclension(bgeoDaysLeft.days)} осталось', lambda:'~~**0** дней осталось~~')[bgeoDaysLeft.days <= 0]()}", inline=False)
                 if geoDaysLeft.days == 0:
                     await channel.send("@everyone https://www.youtube.com/watch?v=pjGZnRwtvww", embed=embed)
                 elif rusDaysLeft.days == 0:
@@ -83,6 +131,7 @@ async def checkTime():
                 pass
                 
 
+            
 from json import load
 TOKEN = load(open("token.json"))['TOKEN']
 bot.run(TOKEN)
