@@ -9,6 +9,49 @@ if platform == "win32":
 
 bot = commands.Bot(command_prefix="$", help_command=None, intents=discord.Intents.all())
 
+def dayDeclension(number):
+    listOfNumbers = []
+    tempString = str(number)
+    for symbol in tempString:
+        listOfNumbers.append(symbol)
+    listOfNumbers.reverse()
+    if len(listOfNumbers) == 2:
+        match listOfNumbers[0]:
+            case '1':
+                if listOfNumbers[1] == '1':
+                    return "дней"
+                else:
+                    return "день"
+            case '2':
+                if listOfNumbers[1] != '1':
+                    return "дня"
+                else:
+                    return "дней"
+            case '3':
+                if listOfNumbers[1] != '1':
+                    return "дня"
+                else:
+                    return "дней"
+            case '4':
+                if listOfNumbers[1] != '1':
+                    return "дня"
+                else:
+                    return "дней"
+            case _:
+                return "дней"
+
+    else:
+        match listOfNumbers[0]:
+            case '1':
+                return "день"
+            case '2':
+                return "дня"
+            case '3':
+                return "дня"
+            case '4':
+                return "дня"
+            case _:
+                return "дней"
 
 @bot.event
 async def on_ready():
@@ -48,15 +91,15 @@ async def checkTime():
             delta = now-lastTime
             if delta.days >= 1:
                 embed = discord.Embed(title="GENTLEMEN, SYNCHRONIZE YOUR DEATH WATCHES:")
-                embed.add_field(name="• ГЕОГРАФИИ:", value=f"**{geoDaysLeft.days}** дней осталось", inline=False)
-                embed.add_field(name="• РУССКИЙ:", value=f"**{rusDaysLeft.days}** дней осталось", inline=False)
-                embed.add_field(name="• МАТЕМАТИКА:", value=f"**{matDaysLeft.days}** дней осталось", inline=False)
-                embed.add_field(name="• АНГЛИЙСКИЙ:", value=f"**{engDaysLeft.days}** дней осталось", inline=False)
-                embed.add_field(name="• РУССКИЙ (Беларусь):", value=f"**{brusDaysLeft.days}** дней осталось", inline=False)
-                embed.add_field(name="• ИНФОРМАТИКА:", value=f"**{infDaysLeft.days}** дней осталось", inline=False)
-                embed.add_field(name="• МАТЕМАТИКА (Беларусь):", value=f"**{bmatDaysLeft.days}** дней осталось", inline=False)
-                embed.add_field(name="• АНГЛИЙСКИЙ (ГОВОРЕНИЕ):", value=f"**{engtDaysLeft.days}** дней осталось", inline=False)
-                embed.add_field(name="• ГЕОГРАФИЯ (Беларусь):", value=f"**{bgeoDaysLeft.days}** дней осталось", inline=False)
+                embed.add_field(name="• ГЕОГРАФИИ:", value=f"**{geoDaysLeft.days}** {dayDeclension(geoDaysLeft.days)} осталось", inline=False)
+                embed.add_field(name="• РУССКИЙ:", value=f"**{rusDaysLeft.days}** {dayDeclension(rusDaysLeft.days)} осталось", inline=False)
+                embed.add_field(name="• МАТЕМАТИКА:", value=f"**{matDaysLeft.days}** {dayDeclension(matDaysLeft.days)} осталось", inline=False)
+                embed.add_field(name="• АНГЛИЙСКИЙ:", value=f"**{engDaysLeft.days}** {dayDeclension(engDaysLeft.days)} осталось", inline=False)
+                embed.add_field(name="• РУССКИЙ (Беларусь):", value=f"**{brusDaysLeft.days}** {dayDeclension(brusDaysLeft.days)} осталось", inline=False)
+                embed.add_field(name="• ИНФОРМАТИКА:", value=f"**{infDaysLeft.days}** {dayDeclension(infDaysLeft.days)} осталось", inline=False)
+                embed.add_field(name="• МАТЕМАТИКА (Беларусь):", value=f"**{bmatDaysLeft.days}** {dayDeclension(bmatDaysLeft.days)} осталось", inline=False)
+                embed.add_field(name="• АНГЛИЙСКИЙ (ГОВОРЕНИЕ):", value=f"**{engtDaysLeft.days}** {dayDeclension(engtDaysLeft.days)} осталось", inline=False)
+                embed.add_field(name="• ГЕОГРАФИЯ (Беларусь):", value=f"**{bgeoDaysLeft.days}** {dayDeclension(bgeoDaysLeft.days)} осталось", inline=False)
                 await channel.send("@everyone", embed=embed)
 
                 date.seek(0)
