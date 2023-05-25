@@ -91,15 +91,24 @@ async def checkTime():
             delta = now-lastTime
             if delta.days >= 1:
                 embed = discord.Embed(title="GENTLEMEN, SYNCHRONIZE YOUR DEATH WATCHES:")
-                embed.add_field(name="• ГЕОГРАФИИ:", value=f"**{geoDaysLeft.days}** {dayDeclension(geoDaysLeft.days)} осталось", inline=False)
-                embed.add_field(name="• РУССКИЙ:", value=f"**{rusDaysLeft.days}** {dayDeclension(rusDaysLeft.days)} осталось", inline=False)
-                embed.add_field(name="• МАТЕМАТИКА:", value=f"**{matDaysLeft.days}** {dayDeclension(matDaysLeft.days)} осталось", inline=False)
-                embed.add_field(name="• АНГЛИЙСКИЙ:", value=f"**{engDaysLeft.days}** {dayDeclension(engDaysLeft.days)} осталось", inline=False)
-                embed.add_field(name="• РУССКИЙ (Беларусь):", value=f"**{brusDaysLeft.days}** {dayDeclension(brusDaysLeft.days)} осталось", inline=False)
-                embed.add_field(name="• ИНФОРМАТИКА:", value=f"**{infDaysLeft.days}** {dayDeclension(infDaysLeft.days)} осталось", inline=False)
-                embed.add_field(name="• МАТЕМАТИКА (Беларусь):", value=f"**{bmatDaysLeft.days}** {dayDeclension(bmatDaysLeft.days)} осталось", inline=False)
-                embed.add_field(name="• АНГЛИЙСКИЙ (ГОВОРЕНИЕ):", value=f"**{engtDaysLeft.days}** {dayDeclension(engtDaysLeft.days)} осталось", inline=False)
-                embed.add_field(name="• ГЕОГРАФИЯ (Беларусь):", value=f"**{bgeoDaysLeft.days}** {dayDeclension(bgeoDaysLeft.days)} осталось", inline=False)
+                if geoDaysLeft.days > 0:
+                    embed.add_field(name="• ГЕОГРАФИЯ:", value=f"**{geoDaysLeft.days}** {dayDeclension(geoDaysLeft.days)} осталось", inline=False)
+                if rusDaysLeft.days > 0:
+                    embed.add_field(name="• РУССКИЙ:", value=f"**{rusDaysLeft.days}** {dayDeclension(rusDaysLeft.days)} осталось", inline=False)
+                if matDaysLeft.days > 0:
+                    embed.add_field(name="• МАТЕМАТИКА:", value=f"**{matDaysLeft.days}** {dayDeclension(matDaysLeft.days)} осталось", inline=False)
+                if engDaysLeft.days > 0:
+                    embed.add_field(name="• АНГЛИЙСКИЙ:", value=f"**{engDaysLeft.days}** {dayDeclension(engDaysLeft.days)} осталось", inline=False)
+                if brusDaysLeft.days > 0:
+                    embed.add_field(name="• РУССКИЙ (Беларусь):", value=f"**{brusDaysLeft.days}** {dayDeclension(brusDaysLeft.days)} осталось", inline=False)
+                if infDaysLeft.days > 0:
+                    embed.add_field(name="• ИНФОРМАТИКА:", value=f"**{infDaysLeft.days}** {dayDeclension(infDaysLeft.days)} осталось", inline=False)
+                if bmatDaysLeft.days > 0:
+                    embed.add_field(name="• МАТЕМАТИКА (Беларусь):", value=f"**{bmatDaysLeft.days}** {dayDeclension(bmatDaysLeft.days)} осталось", inline=False)
+                if engtDaysLeft.days > 0:
+                    embed.add_field(name="• АНГЛИЙСКИЙ (ГОВОРЕНИЕ):", value=f"**{engtDaysLeft.days}** {dayDeclension(engtDaysLeft.days)} осталось", inline=False)
+                if bgeoDaysLeft.days > 0:
+                    embed.add_field(name="• ГЕОГРАФИЯ (Беларусь):", value=f"**{bgeoDaysLeft.days}** {dayDeclension(bgeoDaysLeft.days)} осталось", inline=False)
                 await channel.send("@everyone", embed=embed)
 
                 date.seek(0)
